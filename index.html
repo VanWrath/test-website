@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luminary — Modern Home Goods</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream: #f5f0e8;
+      --sand: #e8ddd0;
+      --bark: #8b6f5c;
+      --ink: #1e1a17;
+      --muted: #7a6f67;
+      --accent: #c4622d;
+      --white: #ffffff;
+      --card-bg: #faf7f3;
+      --border: #ddd5c8;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-actions button:hover {
+      color: var(--ink);
+    }
+
+    .btn-cart {
+      background: var(--ink) !important;
+      color: var(--white) !important;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem !important;
+      font-weight: 500;
+      padding: 0.5rem 1.1rem;
+      border-radius: 100px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 88vh;
+      align-items: center;
+      padding: 0 5%;
+      gap: 4rem;
+    }
+
+    .hero-text {
+      max-width: 540px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--ink);
+      margin-bottom: 1.4rem;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: #a8521f;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      letter-spacing: 0.02em;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--bark);
+      transform: translateY(-1px);
+    }
+
+    .hero-image {
+      position: relative;
+      height: 70vh;
+      max-height: 680px;
+      border-radius: 2rem;
+      overflow: hidden;
+      background: var(--sand);
+    }
+
+    .hero-image-inner {
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(ellipse at 30% 60%, #d4b896 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 20%, #c9a882 0%, transparent 50%),
+        linear-gradient(135deg, #e8ddd0 0%, #c8b89a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-product-mockup {
+      width: 260px;
+      height: 360px;
+      background: linear-gradient(145deg, #f0e8dc, #d9c9b5);
+      border-radius: 1rem;
+      box-shadow: 0 32px 80px rgba(30, 26, 23, 0.18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 2rem;
+      position: relative;
+    }
+
+    .hero-product-mockup::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c4622d40, #8b6f5c30);
+      border: 2px solid rgba(196, 98, 45, 0.2);
+    }
+
+    .hero-product-mockup::after {
+      content: '';
+      position: absolute;
+      top: 44px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.7;
+    }
+
+    .hero-badge {
+      background: var(--white);
+      color: var(--ink);
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.35rem 0.8rem;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+      padding: 1.2rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .trust-item span:first-child {
+      font-size: 1rem;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      text-align: center;
+      padding: 5rem 5% 3rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-header p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    /* ── PRODUCTS ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      padding: 0 5% 5rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1.2rem;
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 16px 48px rgba(30, 26, 23, 0.10);
+      transform: translateY(-4px);
+    }
+
+    .product-img {
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(30, 26, 23, 0.04) 100%);
+    }
+
+    .product-info {
+      padding: 1.1rem 1.2rem 1.3rem;
+    }
+
+    .product-category {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .product-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .product-price .was {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-left: 0.35rem;
+    }
+
+    .btn-add {
+      background: var(--ink);
+      color: var(--white);
+      border: none;
+      border-radius: 100px;
+      padding: 0.48rem 1.1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-add:hover {
+      background: var(--accent);
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      background: var(--ink);
+      padding: 5rem 5%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 3rem;
+    }
+
+    .feature-item {
+      color: var(--cream);
+    }
+
+    .feature-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-item p {
+      font-size: 0.85rem;
+      color: #a09890;
+      line-height: 1.6;
+    }
+
+    /* ── BANNER ── */
+    .promo-banner {
+      background: linear-gradient(120deg, #c4622d 0%, #8b4020 100%);
+      color: var(--white);
+      padding: 4rem 5%;
+      text-align: center;
+    }
+
+    .promo-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+
+    .promo-banner p {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-bottom: 2rem;
+    }
+
+    .promo-banner .btn-primary {
+      background: var(--white);
+      color: var(--accent);
+    }
+
+    .promo-banner .btn-primary:hover {
+      background: var(--cream);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #12100e;
+      color: #7a6f67;
+      padding: 3rem 5% 2rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .footer-brand .nav-logo {
+      color: var(--cream);
+    }
+
+    .footer-brand p {
+      margin-top: 0.8rem;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      max-width: 220px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #a09890;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.55rem;
+    }
+
+    .footer-col a {
+      text-decoration: none;
+      color: #7a6f67;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--cream);
+    }
+
+    .footer-bottom {
+      background: #12100e;
+      border-top: 1px solid #2a2420;
+      padding: 1.2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: #5a5048;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        gap: 2.5rem;
+      }
+
+      .hero-image {
+        height: 50vw;
+        max-height: 320px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      footer {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <a href="#" class="nav-logo">Luminary</a>
+    <ul class="nav-links">
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Collections</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Journal</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button title="Search">🔍</button>
+      <button title="Account">👤</button>
+      <button class="btn-cart" title="Cart">Bag (0)</button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="hero-eyebrow">New Collection — Spring 2026</span>
+      <h1>Crafted for the&nbsp;Quiet&nbsp;Moments</h1>
+      <p>Thoughtfully designed home goods that bring warmth, texture, and a sense of calm to every room.</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-primary">Shop the Collection</a>
+        <a href="#" class="btn-secondary">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-image-inner">
+        <div class="hero-product-mockup">
+          <span class="hero-badge">✦ Handcrafted</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRUST BAR ── -->
+  <div class="trust-bar">
+    <div class="trust-item"><span>🚚</span><span>Free shipping over $75</span></div>
+    <div class="trust-item"><span>↩️</span><span>30-day returns</span></div>
+    <div class="trust-item"><span>🌿</span><span>Sustainably sourced</span></div>
+    <div class="trust-item"><span>⭐</span><span>4.9 / 5 — 2,400+ reviews</span></div>
+  </div>
+
+  <!-- ── PRODUCTS ── -->
+  <div class="section-header" id="products">
+    <h2>Bestsellers</h2>
+    <p>Our most-loved pieces, carefully made and built to last.</p>
+  </div>
+
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg, #e8d8c4, #c8a882);">🕯️</div>
+      <div class="product-info">
+        <div class="product-category">Lighting</div>
+        <div class="product-name">Ember Pillar Candle Set</div>
+        <div class="product-desc">Hand-poured beeswax candles with notes of amber and cedarwood.</div>
+        <div class="product-footer">
+          <div class="product-price">$38 <span class="was">$48</span></div>
+          <button class="btn-add">Add to bag</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg, #d4ccc0, #b8afa4);">🏺</div>
+      <div class="product-info">
+        <div class="product-category">Ceramics</div>
+        <div class="product-name">Stoneware Vase — Ash</div>
+        <div class="product-desc">Wheel-thrown stoneware with a matte ash glaze. Each piece is unique.</div>
+        <div class="product-footer">
+          <div class="product-price">$64</div>
+          <button class="btn-add">Add to bag</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg, #ddd0bc, #c0a888);">🛋️</div>
+      <div class="product-info">
+        <div class="product-category">Textiles</div>
+        <div class="product-name">Linen Throw — Dusk</div>
+        <div class="product-desc">Washed Belgian linen throw, pre-softened for that lived-in feel.</div>
+        <div class="product-footer">
+          <div class="product-price">$95 <span class="was">$120</span></div>
+          <button class="btn-add">Add to bag</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg, #c8d4c0, #a8bc98);">🌿</div>
+      <div class="product-info">
+        <div class="product-category">Botanicals</div>
+        <div class="product-name">Dried Pampas Bundle</div>
+        <div class="product-desc">Sustainably harvested pampas grass, delivered ready to display.</div>
+        <div class="product-footer">
+          <div class="product-price">$29</div>
+          <button class="btn-add">Add to bag</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg, #d4c8b8, #b8a898);">☕</div>
+      <div class="product-info">
+        <div class="product-category">Ceramics</div>
+        <div class="product-name">Taper Mug — Set of 2</div>
+        <div class="product-desc">Slim-profile ceramic mugs with a sand-dip glaze. Dishwasher safe.</div>
+        <div class="product-footer">
+          <div class="product-price">$44</div>
+          <button class="btn-add">Add to bag</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg, #e8d4c0, #d0b090);">🪵</div>
+      <div class="product-info">
+        <div class="product-category">Décor</div>
+        <div class="product-name">Walnut Tray — Long</div>
+        <div class="product-desc">Solid American walnut with a food-safe oil finish. Perfect for styling.</div>
+        <div class="product-footer">
+          <div class="product-price">$72 <span class="was">$88</span></div>
+          <button class="btn-add">Add to bag</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── FEATURES ── -->
+  <div class="features">
+    <div class="feature-item">
+      <div class="feature-icon">🤝</div>
+      <h3>Small-Batch Makers</h3>
+      <p>Every product is made in limited quantities by independent artisans across the US and Europe.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🌍</div>
+      <h3>Climate Neutral</h3>
+      <p>We offset 100% of shipping emissions and plant a tree with every order over $50.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">📦</div>
+      <h3>Plastic-Free Packaging</h3>
+      <p>All orders ship in recycled cardboard and compostable tissue — zero plastic, ever.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">💬</div>
+      <h3>Real Human Support</h3>
+      <p>Questions? Our team is online 7 days a week. Use the chat below to reach us instantly.</p>
+    </div>
+  </div>
+
+  <!-- ── PROMO BANNER ── -->
+  <div class="promo-banner">
+    <h2>Spring refresh starts here.</h2>
+    <p>Use code <strong>SPRING20</strong> for 20% off your first order. Limited time only.</p>
+    <a href="#products" class="btn-primary">Claim the offer</a>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">Luminary</a>
+      <p>Home goods made with intention. Shipped with care.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Bestsellers</a></li>
+        <li><a href="#">Ceramics</a></li>
+        <li><a href="#">Textiles</a></li>
+        <li><a href="#">Lighting</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Shipping & Returns</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <div class="footer-bottom">
+    <span>© 2026 Luminary Home Goods. All rights reserved.</span>
+    <span>🌿 1% of revenue goes to reforestation</span>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════
+       CHAT WIDGET EMBED — paste your <script> tag here
+       ════════════════════════════════════════════════ -->
+  <script>
+    window.arcstackSettings = {
+      workspace_id: "cmmwtiy1x0001hghk85tqjdq2",
+    };
+  </script>
+  <script src="https://d13lo4m40rmjc.cloudfront.net/widget.js" async></script>
+</body>
+
+</html>
